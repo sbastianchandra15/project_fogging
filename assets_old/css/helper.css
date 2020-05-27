@@ -1,0 +1,47 @@
+.truncate {
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bt-0 { border-top-width: 0; }
+.br-0 { border-right-width: 0 !important; }
+.bb-0 { border-bottom-width: 0; }
+.bl-0 { border-left-width: 0; }
+
+
+.mb0 { margin-bottom: 0; }
+.mr1,
+.form-horizontal .form-group.mr1 { margin-right: .25rem; }
+
+.block { display:block; }
+.inblock {
+  display: inline-block;
+}
+.mt0 { margin-top:0; s}
+.mt10 { margin-top:10px; }
+.mr2 { margin-right: .5rem; }
+.mr3 { margin-right: 1rem; }
+.mr4 { margin-right: 2rem; }
+.ml2 { margin-left: .5rem; }
+.ml3 { margin-left: 1rem; }
+.pb4 { padding-bottom: 2rem; }
+.pt4 { padding-top: 2rem; }
+.pl3 { padding-left: 1rem; }
+.pl4 { padding-left: 2rem; }
+.pa3 { padding: 1rem; }
+.pr2 { padding-right: .5rem; }
+.pt3 { padding-top: 1rem; }
+.pr3 { padding-right: 1rem; }
+.pl3-5 { padding-left: 3.5rem; }
+.pr3-5 { padding-right: 3.5rem; }
+.w-34-ns { width: 34% !important; }
+
+.nomarg {
+  margin:0;
+}
+
+::-webkit-input-placeholder { text-transform: uppercase; }
+::-moz-placeholder { text-transform: uppercase; }
+:-ms-input-placeholder { text-transform: uppercase; }
+:-moz-placeholder { text-transform: uppercase; }
