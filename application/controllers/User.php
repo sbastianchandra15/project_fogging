@@ -31,10 +31,8 @@ class User extends CI_Controller {
                 // $submenu    = $this->menu_model->get_submenu();
 
                 if ($usr_result > 0 ){
-                	$session_data = array(  'id'            => $row->id,
-                                            'nama'          => $row->nama,
+                	$session_data = array(  'id'            => $row->id_user,
                                             'username'      => $row->username,
-                                            'hak_akses'     => $row->hak_akses,
                                             'loginuser'     => TRUE
                                             // 'menus'         => $this->menu_model->get_menu($row->hak_akses),
                                             // 'submenu'       => $this->menu_model->get_submenu()
@@ -52,13 +50,13 @@ class User extends CI_Controller {
                     redirect('welcome');
 
                 }else{
-                	$this->session->set_flashdata('msg','<div class="alert alert-danger text-center"><font size="2">NIK Atau Password Anda salah</font></div>');
+                	$this->session->set_flashdata('msg','<div class="alert alert-danger text-center"><font size="2">Username Atau Password Anda salah</font></div>');
                     redirect($_SERVER['HTTP_REFERER']);
                     redirect('login');
                 }
             } 
 		}else{
-            //redirect('welcome');
+            redirect('welcome');
 		}
 	}
 
