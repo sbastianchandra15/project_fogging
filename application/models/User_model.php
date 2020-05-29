@@ -6,16 +6,16 @@ class User_model extends CI_Model
 {
 	function get_user($usr,$pwd)
     {
-        $sql =' SELECT 	`id`, `nama`, `username`, `password`, `hak_akses`, `aktif` FROM `user` '.
+        $sql =' SELECT * FROM `admin` '.
               ' WHERE username = "'.$usr.'"'.
-              ' AND password = "'.md5($pwd).'" AND aktif = 1 ';
+              ' AND password = "'.md5($pwd).'"  ';
         $query = $this->db->query($sql);
         return $query->num_rows();
     }
 
     function detail_user($usr,$pwd){
-    	$query = $this->db->query("SELECT 	`id`, `nama`, `username`, `password`, `hak_akses`, `aktif` FROM .`user` 
-                                            WHERE username='$usr' AND password='".md5($pwd)."' AND aktif='1'")->row();
+    	$query = $this->db->query("SELECT * FROM `admin` 
+                                            WHERE username='$usr' AND password='".md5($pwd)."'")->row();
             	
         return $query;
     }
@@ -25,7 +25,7 @@ class User_model extends CI_Model
     }
 
     function user_all(){
-        $sql =  'SELECT   `id`, `nip`, `nrk`, `nama`, `jabatan`, `kelamin`,  `hak_akses` FROM `user` WHERE aktif=1';
+        $sql =  'SELECT   `id`, `nip`, `nrk`, `nama`, `jabatan`, `kelamin`,  `hak_akses` FROM `user` ';
         $query = $this->db->query($sql)->result();
         return $query;
     }

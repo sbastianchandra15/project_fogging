@@ -1,156 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
-  <meta name="author" content="GeeksLabs">
-  <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
-  <link rel="shortcut icon" href="img/favicon.png">
+        <title>Fogging</title>
 
-  <title>SISTEM PERSEDIAAN BARANG PT. NRI GLOBAL MANDIRI</title>
+        <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>assets/css/metisMenu.min.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>assets/css/startmin.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="<?php echo base_url(); ?>assets/css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>assets/css/dataTables/dataTables.responsive.css" rel="stylesheet">
 
-  <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
-  <link href="<?php echo base_url(); ?>assets/css/bootstrap-theme.css" rel="stylesheet">
-  <link href="<?php echo base_url(); ?>assets/css/elegant-icons-style.css" rel="stylesheet" />
-  <link href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet" />
-  <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
-  <link href="<?php echo base_url(); ?>assets/css/select2.css" rel="stylesheet" type="text/css" >
-  <link href="<?php echo base_url(); ?>assets/css/style-responsive.css" rel="stylesheet" />
-  <link href="<?php echo base_url(); ?>assets/css/datatables.min.css" rel="stylesheet" type="text/css" >
-  <link href="<?php echo base_url(); ?>assets/css/jquery-ui.css" rel="stylesheet" type="text/css" >
-  <link href="<?php echo base_url(); ?>assets/css/datepicker/bootstrap-datepicker3.css" rel="stylesheet" type="text/css" >
+        <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/metisMenu.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/startmin.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/dataTables/jquery.dataTables.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/dataTables/dataTables.bootstrap.min.js"></script>
 
-  <!-- Harus pakai jquery-2.2.4.min.js kalau mau add new -->
-  <script src="<?php echo base_url(); ?>assets/js/jquery-2.2.4.min.js"></script>
+        <script>
+          var baseUrl= '<?php echo base_url(); ?>';
+        </script>
+    </head>
+    <body>
 
-  <!-- notif dialog untuk save -->
-  <script src="<?php echo base_url(); ?>assets/js/bootstrap-dialog.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/bootstrap-notify.min.js"></script>
-  
-  <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/jquery.scrollTo.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/jquery.nicescroll.js" type="text/javascript"></script>
-  <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/datatables.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/select2.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/datepicker/bootstrap-datepicker.js"></script>
+        <div id="wrapper">
 
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">Fogging</a>
+                </div>
 
-  <script>
-      var APL = { baseUrl: '<?php echo base_url(); ?>' };
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 
-    </script>
-</head>
+                <ul class="nav navbar-nav navbar-left navbar-top-links">
+                    <!-- <li><a href="#"><i class="fa fa-home fa-fw"></i> Website</a></li> -->
+                </ul>
 
-<body>
-  <!-- container section start -->
-  <section id="container" class="">
-    <!--header start-->
-
-    <header class="header dark-bg hidden-print">
-      <div class="toggle-nav">
-        <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
-      </div>
-
-      <!--logo start-->
-      <a href="index.html" class="logo">SISTEM PERSEDIAAN BARANG PT. NRI GLOBAL MANDIRI</a>
-      <!--logo end-->
-
-      <div class="top-nav notification-row">
-        <!-- notificatoin dropdown start-->
-        <ul class="nav pull-right top-menu">          
-
-          <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="username"><?php echo $this->session->userdata('nama'); ?></span>
-                            <b class="caret"></b>
+                <ul class="nav navbar-right navbar-top-links">
+                    <!-- <li class="dropdown navbar-inverse">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
                         </a>
-            <ul class="dropdown-menu extended logout">
-              <div class="log-arrow-up"></div>
-              <li>
-                <a href="<?php echo base_url().'logout' ?>"><i class="icon_key_alt"></i> Log Out</a>
-              </li>
-            </ul>
-          </li>
-          <!-- user login dropdown end -->
-        </ul>
-        <!-- notificatoin dropdown end-->
-      </div>
-    </header>
-    <!--header end-->
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-comment fa-fw"></i> New Comment
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                        <span class="pull-right text-muted small">12 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-tasks fa-fw"></i> New Task
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="text-center" href="#">
+                                    <strong>See All Alerts</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li> -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i> <?php echo $this->session->userdata('username'); ?> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <!-- <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            </li> -->
+                            <!-- <li class="divider"></li> -->
+                            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- /.navbar-top-links -->
 
-    <!--sidebar start-->
-    <aside>
-      <div id="sidebar" class="nav-collapse hidden-print">
-        <!-- sidebar menu start-->
-        <ul class="sidebar-menu">
-          <li class="sub-menu">
-            <a href="javascript:;" class="">
-              <i class="icon_document_alt"></i><span>Transaksi</span><span class="menu-arrow arrow_carrot-right"></span></a>
-            <ul class="sub">
-              <li><a class="dropdown-item" href="<?php echo base_url(); ?>transaksi_masuk">Barang Masuk</a></li>
-              <li><a class="dropdown-item" href="<?php echo base_url(); ?>transaksi_keluar">Barang Keluar</a></li>
-              <li><a class="dropdown-item" href="<?php echo base_url(); ?>transaksi_returkeluar">Retur Barang Keluar</a></li>
-              <!--<li><a class="dropdown-item" href="<?php //echo base_url(); ?>transaksi_mutasi">Mutasi Antar Gudang</a></li>-->
-            </ul>
-          </li>
-          <?php 
-            if($this->session->userdata('hak_akses')==1){
-          ?>
-          <li class="sub-menu">
-            <a href="javascript:;" class="">
-              <i class="icon_table"></i><span>Master</span><span class="menu-arrow arrow_carrot-right"></span></a>
-            <ul class="sub">
-              <li><a class="dropdown-item" href="<?php echo base_url(); ?>barang">Barang</a></li>
-              <li><a class="dropdown-item" href="<?php echo base_url(); ?>toko">Toko</a></li>
-              <!--<li><a class="dropdown-item" href="<?php echo base_url(); ?>supplier">Supplier</a></li>-->
-              <li><a class="dropdown-item" href="<?php echo base_url(); ?>user/view_user">User</a></li>
-              <li><a class="dropdown-item" href="<?php echo base_url(); ?>gudang">Gudang</a></li>
-            </ul>
-          </li>
-          <?php 
-            }
-          ?>
-          <li class="sub-menu">
-            <a href="javascript:;" class="">
-              <i class="icon_documents_alt"></i><span>Report</span><span class="menu-arrow arrow_carrot-right"></span></a>
-            <ul class="sub">
-              <li><a class="dropdown-item" href="<?php echo base_url(); ?>pergerakan_stok">Pergerakan Stok</a></li>
-              <li><a class="dropdown-item" href="<?php echo base_url(); ?>toko/report">Toko</a></li>
-              <li><a class="dropdown-item" href="<?php echo base_url(); ?>barang/report">Barang</a></li>
-            </ul>
-          </li>
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                            <li class="sidebar-search">
+                                <div class="input-group custom-search-form">
+                                    <input type="text" class="form-control" placeholder="Search...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                                <!-- /input-group -->
+                            </li>
+                            <li>
+                                <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="flot.html">Flot Charts</a>
+                                    </li>
+                                    <li>
+                                        <a href="morris.html">Morris.js Charts</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url('admin'); ?>"><i class="fa fa-table fa-fw"></i> Admin</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url('kategori'); ?>"><i class="fa fa-edit fa-fw"></i> Kategory Alat</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url('customer'); ?>"><i class="fa fa-bar-chart-o fa-fw"></i> Customer</a>
+                            </li>
+                            <li>
+                                <a href="forms.html"><i class="fa fa-wrench fa-fw"></i> Alat Fogging</a>
+                            </li>
+                            <li>
+                                <a href="forms.html"><i class="fa fa-files-o fa-fw"></i> Pesanan</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.sidebar-collapse -->
+                </div>
+                <!-- /.navbar-static-side -->
+            </nav>
 
-        </ul>
-        <!-- sidebar menu end-->
-      </div>
-    </aside>
-    <!--sidebar end-->
+            <!-- Page Content -->
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                    <?php echo $contents; ?>
+                </div>
+            </div>
 
-    <!--main content start-->
-    <section id="main-content">
-      <section class="wrapper">
-        <div class="row">
-          <div class="col-lg-12">
-            <?php echo $contents; ?>
-            
-          </div>
         </div>
-        <!-- page start-->
-        <!-- Page content goes here -->
-        <!-- page end-->
-      </section>
-    </section>
-    <!--main content end-->
-  </section>
-  <!-- container section end -->
-  <!-- javascripts -->
-  
+        <!-- /#wrapper -->
 
+        
 
-</body>
-
+    </body>
 </html>
+
+

@@ -1,52 +1,79 @@
-
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
-  <meta name="author" content="GeeksLabs">
-  <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+        <title>Startmin - Bootstrap Admin Theme</title>
 
-  <title>PT. NRI GLOBAL MANDIRI</title>
+        <!-- Bootstrap Core CSS -->
+        <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Bootstrap CSS -->
-  <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
-  <!-- bootstrap theme -->
-  <link href="<?php echo base_url(); ?>assets/css/bootstrap-theme.css" rel="stylesheet">
-  <!--external css-->
-  <!-- font icon -->
-  <link href="<?php echo base_url(); ?>assets/css/elegant-icons-style.css" rel="stylesheet">
-  <link href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Custom styles -->
-  <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
-  <link href="<?php echo base_url(); ?>assets/css/style-responsive.css" rel="stylesheet">
-</head>
+        <!-- MetisMenu CSS -->
+        <link href="<?php echo base_url(); ?>assets/css/metisMenu.min.css" rel="stylesheet">
 
-<body class="login-img3-body">
+        <!-- Custom CSS -->
+        <link href="<?php echo base_url(); ?>assets/css/startmin.css" rel="stylesheet">
 
-  <div class="container">
+        <!-- Custom Fonts -->
+        <link href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <form class="login-form" action="<?php echo base_url(); ?>" autocomplete="off" method="post" accept-charset="utf-8">
-      <div class="login-wrap">
-        <p class="login-img"><i class="icon_lock_alt"></i></p>
-        <div class="input-group">
-          <span class="input-group-addon"><i class="icon_profile"></i></span>
-          <input type="text" class="form-control" placeholder="Username" name="username" required>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="login-panel panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Please Sign In</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form role="form" action="<?php echo base_url(); ?>" autocomplete="off" method="post">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Username" name="username" type="text" autofocus>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <!-- <input name="remember" type="checkbox" value="Remember Me">Remember Me -->
+                                        </label>
+                                    </div>
+                                    <!-- Change this to a button or input when using this as a form -->
+                                    <button class="btn btn-success btn-lg btn-block" type="submit">Login</button>
+                                    <?php echo $this->session->flashdata('msg'); ?>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="input-group">
-          <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-          <input type="password" class="form-control" name="password" placeholder="Password" required>
-        </div>
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
-        <?php echo $this->session->flashdata('msg'); ?>
-        <!-- button class="btn btn-info btn-lg btn-block" type="submit">Signup</button> -->
-      </div>
-    </form>
-  </div>
 
+        <!-- jQuery -->
+        <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
 
-</body>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
 
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="<?php echo base_url(); ?>assets/js/metisMenu.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="<?php echo base_url(); ?>assets/js/startmin.js"></script>
+
+    </body>
 </html>
+
