@@ -66,7 +66,7 @@
 	                                </div>
 	                            </div>
 	                        </div>
-	                        <div class="row">
+	                        <!-- <div class="row">
 	                            <div class="form-group">
 	                                <label class="col-lg-3">Tgl Register</label>
 	                                <div class="col-lg-5">
@@ -76,7 +76,7 @@
 	                                	<p class="help-block notif" id="notif_tgl_register" style="color: red">* Tgl Register Tidak Boleh Kosong.</p>
 	                                </div>
 	                            </div>
-	                        </div>
+	                        </div> -->
 	                        <div class="row">
 	                            <div class="form-group">
 	                                <label class="col-lg-3">Email</label>
@@ -163,11 +163,11 @@
 			$('#tgl_lahir').focus();
 			return false;
 		}
-		if($('#tgl_register').val()==''){
-			$('#notif_tgl_register').show();
-			$('#tgl_register').focus();
-			return false;
-		}
+		// if($('#tgl_register').val()==''){
+		// 	$('#notif_tgl_register').show();
+		// 	$('#tgl_register').focus();
+		// 	return false;
+		// }
 		if($('#email').val()==''){
 			$('#notif_email').show();
 			$('#email').focus();
@@ -212,7 +212,7 @@
 				alamat 			: $('#alamat').val(),
 				telp 			: $('#telp').val(),
 				tgl_lahir 		: $('#tgl_lahir').val(),
-				tgl_register	: $('#tgl_register').val(),
+				// tgl_register	: $('#tgl_register').val(),
 				email 			: $('#email').val(),
 				username 		: $('#username').val(),
 				password 		: $('#password').val()

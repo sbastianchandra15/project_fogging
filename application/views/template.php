@@ -159,7 +159,7 @@
                                 <a href="<?php echo base_url('customer'); ?>"><i class="fa fa-bar-chart-o fa-fw"></i> Customer</a>
                             </li>
                             <li>
-                                <a href="forms.html"><i class="fa fa-wrench fa-fw"></i> Alat Fogging</a>
+                                <a href="<?php echo base_url('alat_fogging'); ?>"><i class="fa fa-wrench fa-fw"></i> Alat Fogging</a>
                             </li>
                             <li>
                                 <a href="forms.html"><i class="fa fa-files-o fa-fw"></i> Pesanan</a>

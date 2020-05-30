@@ -16,7 +16,7 @@ class Customer_model extends CI_Model
         $alamat             = $this->input->post('alamat');
         $telp               = $this->input->post('telp');
         $tgl_lahir          = $this->input->post('tgl_lahir');
-        $tgl_register       = $this->input->post('tgl_register');
+        $tgl_register       = dbnow();
         $email              = $this->input->post('email');
         $username           = $this->input->post('username');
         $password           = md5($this->input->post('password'));
@@ -45,7 +45,6 @@ class Customer_model extends CI_Model
                     `alamat` = '".$this->input->post('alamat')."',
                     `telp` = '".$this->input->post('telp')."',
                     `tgl_lahir` = '".$this->input->post('tgl_lahir')."',
-                    `tgl_register` = '".$this->input->post('tgl_register')."',
                     `email` = '".$this->input->post('email')."',
                     `password` = '".md5($this->input->post('password'))."',
                     `username` = '".$this->input->post('username')."'
