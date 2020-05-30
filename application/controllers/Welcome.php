@@ -33,4 +33,5 @@ class Welcome extends CI_Controller {
 	{
 		$this->template->load('template_customer', 'welcome');
 	}
+	
 }
