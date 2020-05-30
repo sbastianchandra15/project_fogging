@@ -48,5 +48,66 @@ class Customer extends CI_Controller {
         $data['data_barang']= $this->customer_model->get_barang();
         $this->template->load('template', 'report/report_barang', $data);
     }
+
+    function login_customer(){
+        $this->load->view('login/login_customer');
+    }
+
+    function login_act(){
+        if ($this->session->userdata('loginuser') == 0){
+            $username       = $this->input->post('username');
+            $password       = $this->input->post('password');
+            //test($username,1);
+            $this->form_validation->set_rules('username','Username');
+            $this->form_validation->set_rules('password','Password');
+
+            if ($username == '' ){       
+                $this->load->view('login/login_customer');            
+            }else{
+                $usr_result = $this->customer_model->get_user($username,$password);
+                $row = $this->customer_model->detail_user($username,$password);
+
+                // $menus      = $this->menu_model->get_menu($row->hak_akses));
+                // $submenu    = $this->menu_model->get_submenu();
+
+                if ($usr_result > 0 ){
+                    $session_data = array(  'id'            => $row->id,
+                                            'nama'      => $row->nama,
+                                            'username'      => $row->username,
+                                            'loginuser'     => TRUE
+                                            // 'menus'         => $this->menu_model->get_menu($row->hak_akses),
+                                            // 'submenu'       => $this->menu_model->get_submenu()
+                                         );
+                    $this->session->sess_expiration = '60'; // 1 menit
+                    $this->session->sess_expiration_on_close = 'true';
+                    $this->session->set_userdata($session_data);
+
+                    // $data['id']              = $this->session->userdata('id');
+                    // $data['nama']            = $this->session->userdata('nama');
+                    // $data['hak_akses']      = $this->session->userdata('hak_akses');
+                    // $data['my_content']     = '';    
+                    // //test('oke',1);
+                    // $this->load->view('index', $data);
+                    redirect('welcome/customer');
+
+                }else{
+                    $this->session->set_flashdata('msg','<div class="alert alert-danger text-center"><font size="2">NIK Atau Password Anda salah</font></div>');
+                    redirect($_SERVER['HTTP_REFERER']);
+                    redirect('login_cust');
+                }
+            } 
+        }else{
+            redirect('welcome');
+        }
+    }
+
+    function logout() {
+         //remove all session data
+        $this->session->unset_userdata('id');
+        $this->session->unset_userdata('loginuser');
+        $this->session->unset_userdata('nama');
+        $this->session->sess_destroy();
+        $this->load->view('login/login');
+    }
 }
 ?>

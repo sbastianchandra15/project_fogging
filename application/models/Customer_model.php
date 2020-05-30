@@ -72,6 +72,23 @@ class Customer_model extends CI_Model
 
     }
 
+    function get_user($usr,$pwd)
+    {
+        $sql =' SELECT * FROM `customer` '.
+              ' WHERE username = "'.$usr.'"'.
+              ' AND password = "'.md5($pwd).'"  ';
+              
+        $query = $this->db->query($sql);
+        return $query->num_rows();
+    }
+
+    function detail_user($usr,$pwd){
+        $query = $this->db->query("SELECT * FROM `customer` 
+                                            WHERE username='$usr' AND password='".md5($pwd)."'")->row();
+                
+        return $query;
+    }
+
     
 }	  
 ?>

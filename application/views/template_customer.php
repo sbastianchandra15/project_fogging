@@ -105,7 +105,7 @@
                     </li> -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i> <?php echo $this->session->userdata('username'); ?> <b class="caret"></b>
+                            <i class="fa fa-user fa-fw"></i> <?php echo $this->session->userdata('nama'); ?> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <!-- <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -135,31 +135,7 @@
                                 <!-- /input-group -->
                             </li>
                             <li>
-                                <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="flot.html">Flot Charts</a>
-                                    </li>
-                                    <li>
-                                        <a href="morris.html">Morris.js Charts</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url('admin'); ?>"><i class="fa fa-table fa-fw"></i> Admin</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url('kategori'); ?>"><i class="fa fa-edit fa-fw"></i> Kategory Alat</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url('customer'); ?>"><i class="fa fa-bar-chart-o fa-fw"></i> Customer</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url('alat_fogging'); ?>"><i class="fa fa-wrench fa-fw"></i> Alat Fogging</a>
+                                <a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
                                 <a href="forms.html"><i class="fa fa-files-o fa-fw"></i> Pesanan</a>

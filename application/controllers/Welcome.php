@@ -28,4 +28,9 @@ class Welcome extends CI_Controller {
 	{
 		$this->template->load('template', 'welcome');
 	}
+
+	public function customer()
+	{
+		$this->template->load('template_customer', 'welcome');
+	}
 }
