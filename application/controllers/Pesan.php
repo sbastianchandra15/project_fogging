@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Transaksi_masuk extends CI_Controller {
+class Pesan extends CI_Controller {
 
 	function __construct(){
         parent::__construct();
@@ -12,30 +12,26 @@ class Transaksi_masuk extends CI_Controller {
     }
 
 	function index() {
-        $this->load->model('transaksi_model');
-        $data['data_transaksi_masuk']= $this->transaksi_model->get_transaksi_masuk();
-        $this->template->load('template', 'transaksi/masuk_trn_view', $data);
+        $this->load->model('pesan_model');
+        $data['pesan_header']= $this->pesan_model->get_pesan_header();
+        $this->template->load('template', 'pesan/view', $data);
     }
 
     function delete($id){
-        $this->load->model("transaksi_model");
-        $this->transaksi_model->act_delete_transaksi_masuk($id);
+        $this->load->model("pesan_model");
+        $this->pesan_model->act_delete_transaksi_masuk($id);
         redirect('transaksi_masuk');
     }
 
     function form(){
         
-        $this->load->model("barang_model");
-        $this->load->model("gudang_model");
-
-        //$this->session->unset_userdata('new_ni');
-
+        $this->load->model("customer_model");
+        $this->load->model("alat_fogging_model");
         $new_ni = $this->session->userdata('new_ni');
 
         if(!$new_ni){
             $new_ni = array(
-                'tanggal' => false,
-                
+                'tanggal' => false,                
                 'gd_tujuan' => false,
                 'keterangan' => false,
                 'items' => array()
@@ -43,10 +39,9 @@ class Transaksi_masuk extends CI_Controller {
         }
 
         $data['new_ni'] = $new_ni;
-        //$data['data_supplier']  = $this->supplier_model->get_supplier();
-        $data['data_gudang'] = $this->gudang_model->get_gudang();
-        $data['data_barang'] = $this->barang_model->get_barang();
-        $this->template->load('template', 'transaksi/masuk_trn_form', $data);
+        $data['data_customer']  = $this->customer_model->get_data();
+        $data['data_alat']      = $this->alat_fogging_model->get_data();
+        $this->template->load('template', 'pesan/form', $data);
     }
 
     function add_item(){
@@ -125,8 +120,8 @@ class Transaksi_masuk extends CI_Controller {
     }
 
     function save(){
-        $this->load->model('transaksi_model');
-        $respone = $this->transaksi_model->save_transaksi_masuk();      
+        $this->load->model('pesan_model');
+        $respone = $this->pesan_model->save_transaksi_masuk();      
 
         $this->session->unset_userdata('new_ni');          
         jsout( array('success' => true, 'nomor_dok' => $respone ));   
@@ -134,14 +129,14 @@ class Transaksi_masuk extends CI_Controller {
 
     function edit($id){
         $this->load->model("barang_model");
-        $this->load->model("transaksi_model");
+        $this->load->model("pesan_model");
         $this->load->model("gudang_model");
         //$this->load->model("supplier_model");
 
         $new_ni = $this->session->userdata('new_ni');
 
-        $data_header    = $this->transaksi_model->get_transaksi_masuk_header($id);
-        $data_detail    = $this->transaksi_model->get_transaksi_masuk_detail($id);
+        $data_header    = $this->pesan_model->get_transaksi_masuk_header($id);
+        $data_detail    = $this->pesan_model->get_transaksi_masuk_detail($id);
 
         if(!$new_ni){
             $new_ni = array(
@@ -171,21 +166,21 @@ class Transaksi_masuk extends CI_Controller {
     }
 
     function edit_save(){
-        $this->load->model('transaksi_model');
-        $respone = $this->transaksi_model->edit_transaksi_masuk();      
+        $this->load->model('pesan_model');
+        $respone = $this->pesan_model->edit_transaksi_masuk();      
 
         $this->session->unset_userdata('new_ni');          
         jsout( array('success' => true, 'nomor_dok' => $respone ));   
     }
 
     function cetak($id){
-        $this->load->model('transaksi_model');   
+        $this->load->model('pesan_model');   
 
-        $data_header    = $this->transaksi_model->get_transaksi_masuk_header($id);
-        $data_detail    = $this->transaksi_model->get_transaksi_masuk_detail($id);
+        $data_header    = $this->pesan_model->get_transaksi_masuk_header($id);
+        $data_detail    = $this->pesan_model->get_transaksi_masuk_detail($id);
 
-        $data['data_header']    = $this->transaksi_model->get_transaksi_masuk_header($id);
-        $data['data_detail']    = $this->transaksi_model->get_transaksi_masuk_detail($id);
+        $data['data_header']    = $this->pesan_model->get_transaksi_masuk_header($id);
+        $data['data_detail']    = $this->pesan_model->get_transaksi_masuk_detail($id);
 
         $this->load->view('transaksi/masuk_trn_print', $data);
         //$this->template->load('template', 'transaksi/masuk_trn_print', $data);

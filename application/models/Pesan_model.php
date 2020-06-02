@@ -2,13 +2,13 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Transaksi_model extends CI_Model
+class Pesan_model extends CI_Model
 {
-	function get_transaksi_masuk()
+	function get_pesan_header()
     {
-        $sql =  'SELECT a.id_trans, a.kd_trans, a.tgl, a.keterangan, a.jns_trans, a.status, 
-                c.nama nama_gudang FROM trn_barang_header a LEFT JOIN gudang c ON a.gd_tujuan=c.id_gudang
-                WHERE a.jns_trans=1 ORDER BY a.tgl DESC , a.kd_trans DESC';
+        $sql =  'SELECT a.no_pesan,a.tgl,a.no_ktp,b.nama,b.scan_ktp,a.keterangan FROM pesan_header a 
+                LEFT JOIN customer b on a.no_ktp=b.no_ktp
+        ORDER BY a.no_pesan DESC';
 
         $query = $this->db->query($sql)->result();
         return $query;
