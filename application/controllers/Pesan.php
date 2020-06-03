@@ -47,6 +47,8 @@ class Pesan extends CI_Controller {
     function add_item(){
         if(!isset($_POST['id_barang'])) return;
         $new_ni = $this->session->userdata('new_ni');
+
+        test($new_ni,1);
         // if(!$new_ni) return false;
 
         $items = $new_ni['items'];

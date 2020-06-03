@@ -24,7 +24,8 @@
         <script src="<?php echo base_url(); ?>assets/js/dataTables/dataTables.bootstrap.min.js"></script>
 
         <script>
-          var baseUrl= '<?php echo base_url(); ?>';
+            var APL = { baseUrl: '<?php echo base_url(); ?>' };
+            var baseUrl= '<?php echo base_url(); ?>';
         </script>
     </head>
     <body>
