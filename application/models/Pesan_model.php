@@ -14,6 +14,35 @@ class Pesan_model extends CI_Model
         return $query;
     }
 
+    function simpan(){
+        $tgl            = $this->input->post('tgl');
+        $no_ktp         = $this->input->post('no_ktp');
+        $keterangan     = $this->input->post('keterangan');
+
+        $new_ni         = $this->session->userdata('new_ni');
+        $items          = $new_ni['items'];
+
+        $no_pesan       = $this->db->query("SELECT (IFNULL(MAX(no_pesan),0))+1 id_header FROM pesan_detail")->row()->id_header;
+
+        foreach ($items as $key => $value) {
+            $id_barang  = $value['id_barang'];
+            $qty        = $value['qty'];
+            $harga      = $value['harga'];
+            $total      = $harga*$qty;
+
+            $this->db->query('INSERT INTO `pesan_detail` (`no_pesan`,`id_alat`,`qty`,`harga`,`total`) VALUES 
+                ("'.$no_pesan.'","'.$id_barang.'","'.$qty.'","'.$harga.'","'.$total.'")');
+        }
+
+        $query  = $this->db->query('INSERT INTO `pesan_header` (`no_pesan`,`tgl`,`no_ktp`,`keterangan`) VALUES 
+                        ("'.$no_pesan.'","'.$tgl.'","'.$no_ktp.'","'.$keterangan.'")');
+        if ($query === false){
+            return "ERROR INSERTT";
+        }else{
+            return $query; 
+        }
+    }
+
     function get_transaksi_keluar()
     {
         $sql =  'SELECT a.id_trans, a.kd_trans, a.tgl, a.keterangan, a.jns_trans, a.status, c.nama nama_gudang, a.id_toko, d.nama nama_toko

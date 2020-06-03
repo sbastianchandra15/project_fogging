@@ -24,7 +24,8 @@ class Pesan extends CI_Controller {
     }
 
     function form(){
-        
+        $this->session->unset_userdata('new_ni');
+
         $this->load->model("customer_model");
         $this->load->model("alat_fogging_model");
         $new_ni = $this->session->userdata('new_ni');
@@ -48,9 +49,6 @@ class Pesan extends CI_Controller {
         if(!isset($_POST['id_barang'])) return;
         $new_ni = $this->session->userdata('new_ni');
 
-        test($new_ni,1);
-        // if(!$new_ni) return false;
-
         $items = $new_ni['items'];
 
         $exist = false;
@@ -58,9 +56,10 @@ class Pesan extends CI_Controller {
             foreach($items as $key=>$val){
                 if($val['id_barang'] == $this->input->post('id_barang')){
                     $new_ni['items'][$key] = array(
-                        'id_barang'         => $this->input->post('id_barang'),
-                        'kd_barang'         => $this->input->post('kd_barang'),
-                        'qty'               => $this->input->post('qty')
+                        'id_barang'     => $this->input->post('id_barang'),
+                        'nama'          => $this->input->post('nama'),
+                        'harga'         => $this->input->post('harga'),
+                        'qty'           => $this->input->post('qty')
                     );
                     $exist = true;
                     break;
@@ -70,36 +69,29 @@ class Pesan extends CI_Controller {
 
         if(!$exist){
             $new_ni['items'][] = array(
-                    'id_barang'         => $this->input->post('id_barang'),
-                    'kd_barang'         => $this->input->post('kd_barang'),
-                    'qty'               => $this->input->post('qty')
+                    'id_barang'     => $this->input->post('id_barang'),
+                    'nama'          => $this->input->post('nama'),
+                    'harga'         => $this->input->post('harga'),
+                    'qty'           => $this->input->post('qty')
             );
         }
-
-        $tanggal = $this->input->post('tanggal');
-        if($tanggal) $new_ni['tanggal'] = $tanggal;
-
-        //$id_supplier = $this->input->post('id_supplier');
-        //if($id_supplier) $new_ni['id_supplier'] = $id_supplier;
-
-
-        //$id_supplier = $this->input->post('id_supplier');
-        //if($id_supplier) $new_ni['id_supplier'] = $id_supplier;
-
-        $keterangan = $this->input->post('keterangan');
-        if($keterangan) $new_ni['keterangan'] = $keterangan;
-
-        $gd_tujuan = $this->input->post('gd_tujuan');
-        if($gd_tujuan) $new_ni['gd_tujuan'] = $gd_tujuan;
-
         
         $this->session->set_userdata('new_ni', $new_ni);
-        //test($new_ni,1);
+    }
+
+    function save(){
+        $this->load->model('pesan_model');
+
+        $respone = $this->pesan_model->simpan();      
+
+        $this->session->unset_userdata('new_ni');          
+        jsout( array('success' => true, 'nomor_dok' => $respone )); 
+
     }
 
     function reset(){
         $this->session->unset_userdata('new_ni');
-        redirect('transaksi_masuk');
+        redirect('pesan');
     }
 
     function remove_item(){
@@ -121,13 +113,13 @@ class Pesan extends CI_Controller {
         jsout(array('success'=>1)); 
     }
 
-    function save(){
-        $this->load->model('pesan_model');
-        $respone = $this->pesan_model->save_transaksi_masuk();      
+    // function save(){
+    //     $this->load->model('pesan_model');
+    //     $respone = $this->pesan_model->save_transaksi_masuk();      
 
-        $this->session->unset_userdata('new_ni');          
-        jsout( array('success' => true, 'nomor_dok' => $respone ));   
-    }
+    //     $this->session->unset_userdata('new_ni');          
+    //     jsout( array('success' => true, 'nomor_dok' => $respone ));   
+    // }
 
     function edit($id){
         $this->load->model("barang_model");

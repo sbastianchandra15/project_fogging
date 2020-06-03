@@ -15,7 +15,7 @@ class Kategori_model extends CI_Model
 
         $save               = $this->db->query('INSERT INTO `kategori_alat` (`kategori`) VALUES ("'.$kategori.'")');
 
-        if ($query === false){
+        if ($save === false){
             return "ERROR INSERTT";
         }else{
             return $query; 

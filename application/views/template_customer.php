@@ -138,7 +138,7 @@
                                 <a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
-                                <a href="forms.html"><i class="fa fa-files-o fa-fw"></i> Pesanan</a>
+                                <a href="<?php echo base_url('pesan'); ?>"><i class="fa fa-files-o fa-fw"></i> Pesanan</a>
                             </li>
                         </ul>
                     </div>
