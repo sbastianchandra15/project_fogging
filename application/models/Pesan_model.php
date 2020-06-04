@@ -14,6 +14,16 @@ class Pesan_model extends CI_Model
         return $query;
     }
 
+    function get_pesan_header_customer()
+    {
+        $sql =  'SELECT a.no_pesan,a.tgl,a.no_ktp,b.nama,b.scan_ktp,a.keterangan FROM pesan_header a 
+                LEFT JOIN customer b on a.no_ktp=b.no_ktp WHERE a.no_ktp="'.$this->session->userdata['id'].'"
+        ORDER BY a.no_pesan DESC';
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     function simpan(){
         $tgl            = $this->input->post('tgl');
         $no_ktp         = $this->input->post('no_ktp');
@@ -42,6 +52,105 @@ class Pesan_model extends CI_Model
             return $query; 
         }
     }
+
+    function header($id){
+        return $this->db->query("SELECT * FROM pesan_header WHERE no_pesan='".$id."'")->row();
+    }
+
+    function detail($id){
+       return $this->db->query("SELECT a.*,b.nama FROM pesan_detail a LEFT JOIN alat_fogging b ON a.id_alat=b.id_alat WHERE a.no_pesan='".$id."'")->result();
+    }
+
+    function update(){
+        $tgl            = $this->input->post('tgl');
+        $no_ktp         = $this->input->post('no_ktp');
+        $keterangan     = $this->input->post('keterangan');
+
+        $new_ni         = $this->session->userdata('new_ni');
+        $items          = $new_ni['items'];
+
+        $no_pesan       = $this->input->post('no_pesan');
+
+        $this->db->query("DELETE FROM `db_pro_fogging`.`pesan_detail` WHERE `no_pesan` = '".$no_pesan."'");
+
+        foreach ($items as $key => $value) {
+            $id_barang  = $value['id_barang'];
+            $qty        = $value['qty'];
+            $harga      = $value['harga'];
+            $total      = $harga*$qty;
+
+            $this->db->query('INSERT INTO `pesan_detail` (`no_pesan`,`id_alat`,`qty`,`harga`,`total`) VALUES 
+                ("'.$no_pesan.'","'.$id_barang.'","'.$qty.'","'.$harga.'","'.$total.'")');
+        }
+
+        $query  = $this->db->query("UPDATE `db_pro_fogging`.`pesan_header` SET `tgl` = '".$tgl."', `no_ktp` = '".$no_ktp."', 
+                    `keterangan` = '".$keterangan."' WHERE `no_pesan` = '".$no_pesan."'");
+
+        if ($query === false){
+            return "ERROR INSERTT";
+        }else{
+            return $query; 
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     function get_transaksi_keluar()
     {

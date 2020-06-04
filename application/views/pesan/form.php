@@ -121,7 +121,7 @@
             </div>
         </div>
       <button type="submit" class="btn btn-info" id="simpan">Simpan</button>
-      <button type="reset" class="btn btn-danger">Batal</button>
+      <a class="btn btn-danger" href="<?php echo base_url('pesan/reset'); ?>">Batal</a>
     </div>
 </div>
 

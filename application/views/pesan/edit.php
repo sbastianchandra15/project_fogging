@@ -1,246 +1,235 @@
 <div class="row">
-  <div class="col-lg-12">
-    <h3 class="page-header">Transaksi Barang Masuk</h3>
-    <ul class="header-toolbox">
-      <li class="bottom_input"><a keypress="alt b" class="btn btn-warning btn-sm" onclick="window.history.go(-1); return false;"><u>B</u>atal</a></li>
-    </ul>
-    <ol class="breadcrumb">
-      <li><a href="<?php echo base_url().'welcome'; ?>">Home</a></li>
-      <li>Transaksi</li>
-      <li>Edit Barang Masuk</li>
-    </ol>
-  </div>  
-</div>
-
-<div class="row">
-  <div class="col-lg-12">
-    <section class="panel">
-      <div class="panel-body">
-        <?php echo form_open(current_url(),array('data-toggles'=>'validator','class'=>'form-horizontal')); ?>
-        <input type="hidden" name="ni_items" id="ni_items" value='<?php echo json_encode($new_ni["items"]); ?>' required />
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Tanggal </label>
-          <div class="col-sm-3">
-            <input tabindex="102" type="text" name="tanggal" id="tanggal" class="form-control" required="required" value="<?php echo isset($new_ni['tanggal']) ? $new_ni['tanggal']:''; ?>">
-            <div class="help-block with-errors"></div>
-          </div>
-        </div>
-        <!--<div class="form-group">
-          <label class="col-sm-2 control-label">Supplier </label>
-          <div class="col-sm-5">
-              <select tabindex="102" name="id_supplier" id="id_supplier" class="form-control" style="width: 75%;" required="required">
-              <option value="">Pilih Supplier</option>
-              <?php
-                   //foreach ($data_supplier as $row) {
-                      //if($new_ni['id_supplier']==$row->id_supplier){
-                        //echo "<option value=".$row->id_supplier." selected>".$row->nama."</option>";
-                      //}else{
-                        //echo "<option value=".$row->id_supplier.">".$row->nama."</option>";
-                      //}
-                   //}
-              ?>
-              </select>
-              <div class="help-block with-errors"></div>
-          </div>
-        </div>-->
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Gudang Tujuan </label>
-          <div class="col-sm-5">
-            <select tabindex="102" name="gd_tujuan" id="gd_tujuan" class="form-control" style="width: 75%;" required="required">
-                <option value="">Pilih Gudang</option>
-                <?php
-                    foreach ($data_gudang as $row) {
-                       if($new_ni['gd_tujuan']==$row->id_gudang){
-                        echo "<option value=".$row->id_gudang." selected>".$row->nama."</option>";
-                      }else{
-                        echo "<option value=".$row->id_gudang.">".$row->nama."</option>";
-                      }
-                    }
-                  ?>
-                </select>
-            <div class="help-block with-errors"></div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Keterangan </label>
-          <div class="col-sm-6">
-            <textarea tabindex="103" class="form-control" rows="3" id="keterangan" name="keterangan"><?php echo isset($new_ni['keterangan']) ? $new_ni['keterangan']:''; ?></textarea>
-            <div class="help-block with-errors"></div>
-          </div>
-        </div>
-        <hr>
-        <div class="form-group">
-          <label for="search_item" class="col-sm-2 control-label">Item Barang</label>
-          <div class="col-sm-9">
-            <div style="width:80%;">
-              <select tabindex="102" type="search" name="id_barang" id="id_barang" class="form-control pull-left" style="width: 75%;" required="required">
-                    <option value="">Pilih Barang</option>
-                    <?php
-                        foreach ($data_barang as $row) {
-                          echo "<option value=".$row->id_barang."/".$row->kd_barang."/".$row->nama_barang.">".$row->nama_barang."</option>";
-                        }
-                      ?>
-                  </select>
-            </div>
-            <div class="help-block with-errors"></div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="keterangan_detail" class="col-sm-2 control-label">Qty</label>
-          <div class="col-sm-2">
-            <input tabindex="102" type="text" name="qty" id="qty" class="form-control" required="required">
-          </div>
-        </div>
-        <div class="form-group form-action">
-          <label for="keterangan_detail" class="col-sm-2 control-label"></label>
-          <div class="col-sm-2">
-            <button tabindex="108" id="add-item" class="btn btn-info" notab keypress='alt t'><u>T</u>ambah Detail</button> 
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="search_item" class="col-sm-1 control-label"></label>
-          <div class="col-sm-10">
-            <table id="table-detail" class="table table-hover table-bordered dataTable">
-              <thead>
-              <th width="30%">Kode Barang</th>
-              <th width="10%">Qty</th>
-              <th width="5%"></th>
-              </thead>
-            </table>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="col-sm-2 control-label"></label>
-          <div class="col-sm-2">
-            <button tabindex="120" keypress='alt s' type="submit" class="btn btn-primary" id="saveNI" name="save" value="save" notab><u>S</u>impan</button>
-            <a keypress='alt b' tabindex="121" class="btn btn-danger" href="<?php echo base_url('transaksi_masuk/reset'); ?>" notab><u>B</u>atal</a>
-          </div>
-        </div>
-            <?php echo form_close(); //test($new_ni); ?>
+    <div class="col-lg-12">
+        <h1 class="page-header">Edit Pesanan</h1>
     </div>
-    </section>
-  </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- <form role="form"> -->
+                          <div class="row">
+                              <div class="form-group">
+                                  <label class="col-lg-3">Tanggal </label>
+                                  <div class="col-lg-2">
+                                    <input class="form-control" type="date" id="tgl" value="<?php echo $header->tgl; ?>">
+                                    <input class="form-control" type="hidden" id="no_pesan" value="<?php echo $header->no_pesan; ?>">
+                                    <input type="hidden" name="ni_items" id="ni_items" value='<?php echo json_encode($new_ni["items"]); ?>' required />
+                                  </div>
+                                  <div class="col-lg-3">
+                                    <p class="help-block notif" id="notif_tgl" style="color: red">* Tanggal Tidak Boleh Kosong.</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="form-group">
+                                  <label class="col-lg-3">Customer</label>
+                                  <div class="col-lg-5">
+                                    <select class="form-control" id="no_ktp">
+                                      <option value="">- Pilih -</option>
+                                      <?php 
+                                      foreach ($data_customer as $key => $value) {
+                                        if($value->no_ktp==$header->no_ktp){
+                                          echo '<option value="'.$value->no_ktp.'" selected>'.$value->nama .'</option>';
+                                        }else{
+                                          echo '<option value="'.$value->no_ktp.'">'.$value->nama .'</option>';
+                                        }
+                                      }
+                                      ?>
+                                    </select>
+                                  </div>
+                                  <div class="col-lg-3">
+                                    <p class="help-block notif" id="notif_no_ktp" style="color: red">* Customer Tidak Boleh Kosong.</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="form-group">
+                                  <label class="col-lg-3">Keterangan</label>
+                                  <div class="col-lg-5">
+                                    <input class="form-control" type="text" id="keterangan" value="<?php echo $header->keterangan; ?>">
+                                  </div>
+                                  <div class="col-lg-3">
+                                    <p class="help-block notif" id="notif_kategori" style="color: red">* Kategori Tidak Boleh Kosong.</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                              <div class="form-group">
+                                  <label class="col-lg-3">Nama Barang</label>
+                                  <div class="col-lg-5">
+                                    <select tabindex="102" type="search" name="id_barang" id="id_barang" class="form-control pull-left" style="width: 75%;" required="required">
+                                      <option value="">Pilih Alat</option>
+                                      <?php
+                                        foreach ($data_alat as $row) {
+                                          echo "<option value=".$row->id_alat." data-nama='".$row->nama."'>".$row->nama."</option>";
+                                        }
+                                      ?>
+                                    </select>
+                                  </div>
+                                  <div class="col-lg-3">
+                                    <p class="help-block notif" id="notif_kategori" style="color: red">* Kategori Tidak Boleh Kosong.</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="form-group">
+                                  <label class="col-lg-3">Qty</label>
+                                  <div class="col-lg-2">
+                                    <input tabindex="102" type="text" name="qty" id="qty" class="form-control" required="required">
+                                  </div>
+                                  <div class="col-lg-3">
+                                    <p class="help-block notif" id="notif_kategori" style="color: red">* Kategori Tidak Boleh Kosong.</p>
+                                  </div>
+                                  <input type="hidden" class="form-control " id="id" name="id" value="0"/>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="form-group">
+                                  <label class="col-lg-3">Harga</label>
+                                  <div class="col-lg-2">
+                                    <input tabindex="102" type="text" name="harga" id="harga" class="form-control" required="required">
+                                  </div>
+                                  <div class="col-lg-3">
+                                    <p class="help-block notif" id="notif_kategori" style="color: red">* Harga Tidak Boleh Kosong.</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="form-group">
+                                  <label class="col-lg-3"></label>
+                                  <div class="col-lg-5">
+                                    <button tabindex="108" id="add-item" class="btn btn-info" notab keypress='alt t'><u>T</u>ambah Detail</button>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                            <div class="form-group">
+                              <div class="col-sm-10">
+                                <table id="table-detail" class="table table-hover table-bordered dataTable">
+                                  <thead>
+                                  <th >Nama Barang</th>
+                                  <th width="10%">Qty</th>
+                                  <th width="10%">Harga</th>
+                                  <th width="5%">Act</th>
+                                  </thead>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        <!-- </form> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+      <button type="submit" class="btn btn-info" id="simpan">Simpan</button>
+      <a class="btn btn-danger" href="<?php echo base_url('pesan/reset'); ?>">Batal</a>
+    </div>
 </div>
 
 <script type="text/javascript">
-APL.Brg = {
-	data: {},
-  	processed: false,
-  	items: [],
-  	init: function(){
+  $('.notif').hide();
 
-		$("#id_barang").select2().on('select2:select',function(e){});
-    $("#gd_tujuan").select2().on('select2:select',function(e){});
-    $("#id_supplier").select2().on('select2:select',function(e){});
 
-		$('#add-item').click(APL.Brg.add_item);
-		
+  APL.Brg = {
+    data: {},
+    processed: false,
+    items: [],
+    init: function(){   
 
-		this.tanggal  		= $("#tanggal");
-  	this.keterangan   = $("#keterangan");
-    this.gd_tujuan    = $("#gd_tujuan");
-    this.id_supplier    = $("#id_supplier");
+      $('#add-item').click(APL.Brg.add_item);
 
-  	$('#saveNI').click(APL.Brg.save);
+      this.tanggal      = $("#tanggal");
+      this.keterangan   = $("#keterangan");
+      this.gd_tujuan    = $("#gd_tujuan");
+      
 
-  	var currentDate = new Date();
-    $('#tanggal').datepicker({
-        format: "yyyy-mm-dd",
-        autoclose:true,
-        inline: true,
-    });
-    $("#tanggal").datepicker("setDate", currentDate);
+      $('#simpan').click(APL.Brg.save);
 
-		this.grids = $('#table-detail').DataTable({
-	        "bSort" : false, 
-	        data: [], 
-	        fixedColumns: true, 
-	        "searching": false,
-	        "paging": false, 
-	        "bLengthChange": false, 
-	        "info": false,
-	        "columnDefs": [{
-	          "targets": [0], "visible": true, "searchable": false
-	        }],
-	        "language": {
-	          "emptyTable": "Tidak Ada Data"
-	        },
-	        columns: [
-	           { data: 'kd_barang' }, { data: 'qty' }, { data: 'act' }
-	        ],
-	        "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull){
+      this.grids = $('#table-detail').DataTable({
+        "bSort" : false, 
+        data: [], 
+        fixedColumns: true, 
+        "searching": false,
+        "paging": false, 
+        "bLengthChange": false, 
+        "info": false,
+        "columnDefs": [{
+          "targets": [0], "visible": true, "searchable": false
+        }],
+        "language": {
+          "emptyTable": "Tidak Ada Data"
+        },
+        columns: [
+           { data: 'nama' }, { data: 'qty' }, { data: 'harga' }, { data: 'act' }
+        ],
+        "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull){
 
-	        }
-	    });
+        }
+      });
 
-    this._set_items($('#ni_items').val());
+      this._set_items($('#ni_items').val());
 
     },
 
     add_item: function(e){
-    	// debugger
+
       e.preventDefault();
       if(!$('#id_barang').val()){
         alert('Kolom Barang Tidak Boleh Kosong');
+        return false;
       }
 
       if(!$('#qty').val()){
         alert('Qty Tidak Boleh Kosong');
+        return false;
       }
 
-        let qty         = $('#qty').val();
-        let barang		= $('#id_barang').val();
-        var hasil		= barang.split('/');
-        let id_barang 	= hasil[0];
-        let kd_barang	= hasil[1];
-        let nama_barang	= hasil[2];
-        let id 			= parseInt($('#id').val());
-        var jumlah 		= id + 1;
+      if(!$('#harga').val()){
+        alert('Harga Tidak Boleh Kosong');
+        return false;
+      }
 
-        if(qty){
-			data = {
-				qty       : qty,
-				id_barang : id_barang,
-				kd_barang : kd_barang
-			};
+      let qty       = $('#qty').val();
+      let harga     = $('#harga').val();
+      let id_barang = $('#id_barang').val();
+      let nama      = $('#id_barang option:selected').attr('data-nama');
+      // var hasil   = barang.split('/');
+      // let id_barang   = hasil[0];
+      // let kd_barang = hasil[1];
+      // let nama_barang = hasil[2];
+      let id      = parseInt($('#id').val());
+      var jumlah    = id + 1;
+      $('#id').val(jumlah);
 
-          APL.Brg._addtogrid(data);
-          APL.Brg._clearitem();
-          APL.Brg._focusadd();
-        }
-
-        var data = {
-        	qty         : $('#qty').val(),
-        	barang		: $('#id_barang').val(),
-        	id_barang 	: hasil[0],
-        	kd_barang	: hasil[1],
-        	nama_barang	: hasil[2],
-        	id 			: parseInt($('#id').val()),
-        	jumlah 		: id + 1
-
+      if(id_barang){
+        data = {
+          qty       : qty,
+          harga     : harga,
+          id_barang : id_barang,
+          nama      : nama,
+          jumlah    : jumlah
         };
 
-        var exist = false;
-        APL.Brg.items.map(function(it,ix){
-          if (it.id_barang == data.id_barang){
-            exist = true; return;
-          }
-        });
-        if(!exist) APL.Brg.items.push(data);
+      }
+
+      APL.Brg._addtogrid(data);
+      APL.Brg._clearitem();
+      // APL.Brg._focusadd();
 
     },
 
     _addtogrid: function(data){
-    	//debugger
       let grids = this.grids;
-      let exist = APL.Brg.grids.row('#'+data.kd_barang).index();
+      let exist = APL.Brg.grids.row('#'+data.id_barang).index();
       //
-      $('#id').val(data.kd_barang);
+      $('#id').val(data.id_barang);
 
-      data.act = '<button item-code="'+data.kd_barang+'" onclick="return APL.Brg._removefromgrid(this);">x</button>';
-      data.DT_RowId = data.kd_barang;
+      data.act = '<button item-code="'+data.id_barang+'" onclick="return APL.Brg._removefromgrid(this);">x</button>';
+      data.DT_RowId = data.id_barang;
       //
       if(exist===undefined){
         grids.row.add(data).draw();
@@ -250,22 +239,18 @@ APL.Brg = {
       }
 
       if(this.no_ajax) return false;
-
-      $.post({
-        url: APL.baseUrl+'transaksi_masuk/add_item',
-        data: {
-        	tanggal 		: this.tanggal.val(),
-        	keterangan 		: this.keterangan.val(),
-          gd_tujuan     : this.gd_tujuan.val(),
-          id_supplier   : this.id_supplier.val(),
-        	qty       		: data.qty,
-			id_barang 		: data.id_barang,
-			kd_barang 		: data.kd_barang,
-			nama_barang 	: data.nama_barang,
-			id        		: data.jumlah
+      $.ajax({
+        url: APL.baseUrl+'pesan/add_item',
+        type : "POST",
+        data: {         
+          qty           : data.qty,
+          harga         : data.harga,
+          id_barang     : data.id_barang,
+          nama          : data.nama,
+          id            : data.jumlah
         }
       });
-      },
+    },
 
     _set_items: function(items){
       this.no_ajax = true;
@@ -274,9 +259,10 @@ APL.Brg = {
       this.items = items;
       items.map(function(i,e){
         var data = {
-        	qty       : i.qty,
-			id_barang : i.id_barang,
-			kd_barang : i.kd_barang
+          qty       : i.qty,
+          harga     : i.harga,
+          id_barang : i.id_barang,
+          nama      : i.nama
         };
         APL.Brg._addtogrid(data);
       });
@@ -286,72 +272,65 @@ APL.Brg = {
 
     _clearitem: function(){
       $('#qty').val('');
+      $('#harga').val('');
       $('#id_barang').val('').trigger('change');
     },
 
-    _focusadd: function(){
-        $('#id_barang').focus();
-    },
-
     _removefromgrid: function(el){
-
       let code = $(el).attr('item-code');
       APL.Brg.grids.row("#"+code).remove().draw();
-      $.get({
-        url: APL.baseUrl+'transaksi_masuk/remove_item',
-        data: {
+      $.ajax({
+        type  : "GET",
+        url   : APL.baseUrl+'pesan/remove_item',
+        data  : {
           index_code: code
         }
       });
       return false;
     },
 
-    _clearForm: function(){
-      $('#tanggal').val('');
-      $('#keterangan').val('');
-      APL.Brg._clearitem();    
-    },
-
     save: function(e){
-
       e.preventDefault();
 
-      if(!$('#tanggal').val()){
-        alert('Kolom Tanggal Tidak Boleh Kosong');
+      $('.notif').hide();
+
+      if($('#tgl').val()==''){
+        $('#notif_tgl').show();
+        $('#tgl').focus();
+        return false;
+      }
+      if($('#no_ktp').val()==''){
+        $('#notif_no_ktp').show();
+        $('#no_ktp').focus();
         return false;
       }
       
       $.ajax({       
-        data: { },     
+        data: {
+          tgl           : $('#tgl').val(),
+          no_ktp        : $('#no_ktp').val(),
+          keterangan    : $('#keterangan').val(),
+          no_pesan      : $('#no_pesan').val()
+        },     
         type : "POST",        
-        url: APL.baseUrl+'transaksi_masuk/edit_save',
+        url: APL.baseUrl+'pesan/edit_save',
         success : function(resp){
           
           if(resp.nomor_dok == 'ERROR INSERT' || resp.nomor_dok == false) {
-            $.notify({
-              icon: "img/growl_64x.png",
-              message: "Data Gagal disimpan"
-            },{
-              type: 'danger'
-            });
+            alert("Data Gagal Disimpan");
             return false;
           }else {
-            APL.Brg._clearForm();
-            $.notify({
+            alert("Data Berhasil di Simpan ");
 
-              icon: "glyphicon glyphicon-save",
-              message: "Data Transaksi "+resp.nomor_dok+" Berhasil di Update."
-            });
-
-            setTimeout(function () {
-              window.location.href = APL.baseUrl+'transaksi_masuk/'; //will redirect to google.
-            }, 2000);
+            // setTimeout(function () {
+            //   window.location.href = APL.baseUrl+'pesan/'; //will redirect to google.
+            // }, 2000);
           }
         }
       })
     }
 
-};
+  };
 
 APL.Brg.init();
 </script>

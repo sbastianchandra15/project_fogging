@@ -71,8 +71,8 @@ class Customer extends CI_Controller {
                 // $submenu    = $this->menu_model->get_submenu();
 
                 if ($usr_result > 0 ){
-                    $session_data = array(  'id'            => $row->id,
-                                            'nama'      => $row->nama,
+                    $session_data = array(  'id'            => $row->no_ktp,
+                                            'nama'          => $row->nama,
                                             'username'      => $row->username,
                                             'loginuser'     => TRUE
                                             // 'menus'         => $this->menu_model->get_menu($row->hak_akses),
@@ -107,7 +107,25 @@ class Customer extends CI_Controller {
         $this->session->unset_userdata('loginuser');
         $this->session->unset_userdata('nama');
         $this->session->sess_destroy();
-        $this->load->view('login/login');
+        redirect('login_cust');
+        
+    }
+
+    function add_file($no_ktp){
+        $config['upload_path'] = './file_upload/';
+        $config['allowed_types'] = 'pdf|jpg|jpeg|png|gif|zip|rar|doc|docx|xls|xlsx|ods|odt|odp';
+        $config['file_name'] = $no_ktp;
+
+        $this->load->library('upload', $config);
+        $this->upload->overwrite = true;
+
+        if (!$this->upload->do_upload('file_quotation')) {
+            $error = $this->upload->display_errors();
+            test($error,1);
+        } else {
+            $result = $this->upload->data();
+            test($result,1);
+        }   
     }
 }
 ?>

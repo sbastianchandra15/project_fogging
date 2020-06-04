@@ -19,6 +19,7 @@
                             <tr>
                                 <th width="5%">No.</th>
                                 <th>Nama</th>
+                                <th>No KTP</th>
                                 <!-- <th>Telp</th> -->
                                 <!-- <th>Tgl Lahir</th> -->
                                 <th>Tgl Register</th>
@@ -36,6 +37,7 @@
                             <tr class="odd gradeX">
                                 <td><?php echo $no; ?></td>
                                 <td><?php echo $value->nama; ?></td>
+                                <td><a target="_blank" href="<?php echo base_url('file_upload/'.$value->scan_ktp) ?>"><?php echo $value->no_ktp; ?></td>
                                 <!-- <td><?php echo $value->telp; ?></td> -->
                                 <!-- <td><?php echo $value->tgl_lahir; ?></td> -->
                                 <td><?php echo $value->tgl_register; ?></td>
@@ -62,12 +64,34 @@
                 responsive: true
         });
 
+        function addfile(){
+            var fd = new FormData();
+            fd.append('file_quotation',file.file_quotation);
+
+            $.post({
+                url: baseUrl+'customer/add_file/'+file.no_ktp,
+                data: fd,
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        }
+
         $('#dataTables-example').on('click','#delete', function(e){
 
-		    var no_ktp		= $(this).data('no_ktp');
-		    var customer  	= $(this).data('nama');
-	        var txt;
+		    var no_ktp		      = $(this).data('no_ktp');
+		    var customer  	      = $(this).data('nama');
 
+            var file_quotation    = $('#file')[0].files[0];
+
+            file = {
+                file_quotation  : file_quotation,
+                no_ktp          : no_ktp
+            };
+
+            addfile(file);
+
+	        var txt;
 			var r = confirm("Apakah Anda Ingin Menghapus "+customer+' ?');
 			if (r == true) {
 				$.ajax({

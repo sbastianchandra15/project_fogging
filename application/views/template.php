@@ -25,7 +25,7 @@
 
         <script>
             var APL = { baseUrl: '<?php echo base_url(); ?>' };
-            var s= '<?php echo base_url(); ?>';
+            var baseUrl= '<?php echo base_url(); ?>';
         </script>
     </head>
     <body>
@@ -163,7 +163,7 @@
                                 <a href="<?php echo base_url('alat_fogging'); ?>"><i class="fa fa-wrench fa-fw"></i> Alat Fogging</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url('pesan'); ?>"><i class="fa fa-files-o fa-fw"></i> Pesanan</a>
+                                <a href="<?php echo base_url('pesan/view_pesan'); ?>"><i class="fa fa-files-o fa-fw"></i> Pesanan</a>
                             </li>
                         </ul>
                     </div>

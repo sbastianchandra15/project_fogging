@@ -38,7 +38,7 @@
                                 <td><?php echo $value->nama; ?></td>
                                 <td><?php echo $value->keterangan; ?></td>
                                 <td>
-                                <a class="btn btn-warning btn-xs" href="<?php echo base_url('alat_fogging/edit/'.$value->no_pesan); ?>">Edit</a>
+                                <a class="btn btn-warning btn-xs" href="<?php echo base_url('pesan/edit/'.$value->no_pesan); ?>">Edit</a>
                                 <button class="btn btn-danger btn-xs" id="delete" data-id="<?php echo $value->no_pesan; ?>">Hapus</button>
                                 </td>
                             </tr>
@@ -61,24 +61,23 @@
         $('#dataTables-example').on('click','#delete', function(e){
 
         var id      = $(this).data('id');
-        var nama    = $(this).data('nama');
-          var txt;
+        var txt;
 
-      var r = confirm("Apakah Anda Ingin Menghapus "+nama+' ?');
+      var r = confirm("Apakah Anda Ingin Menghapus ?");
       if (r == true) {
         $.ajax({
             data: {
               id  : id
             },
             type : "POST",
-            url: baseUrl+'alat_fogging/delete',
+            url: baseUrl+'pesan/delete',
             success : function(resp){
               if(resp.status == false){
               alert('Data Gagal Di Hapus');
             }else{
               alert('Data Berhasil Di Hapus');
               setTimeout(function () {
-                      window.location.href = baseUrl+'alat_fogging/'; 
+                      window.location.href = baseUrl+'pesan/'; 
                   }, 2000);
             }
             }

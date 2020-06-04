@@ -31,7 +31,7 @@ class User extends CI_Controller {
                 // $submenu    = $this->menu_model->get_submenu();
 
                 if ($usr_result > 0 ){
-                	$session_data = array(  'id'            => $row->id,
+                	$session_data = array(  'id'            => $row->id_user,
                                             'username'      => $row->username,
                                             'loginuser'     => TRUE
                                             // 'menus'         => $this->menu_model->get_menu($row->hak_akses),

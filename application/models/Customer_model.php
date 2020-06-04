@@ -12,6 +12,8 @@ class Customer_model extends CI_Model
 
     function act_form(){
         $no_ktp             = $this->input->post('no_ktp');
+        $type_ktp           = $this->input->post('type_ktp');
+        $file_ktp           = $no_ktp.'.'.$type_ktp;
         $nama               = $this->input->post('nama');
         $alamat             = $this->input->post('alamat');
         $telp               = $this->input->post('telp');
@@ -21,14 +23,14 @@ class Customer_model extends CI_Model
         $username           = $this->input->post('username');
         $password           = md5($this->input->post('password'));
 
-        $save               = $this->db->query('INSERT INTO `customer` (`no_ktp`,`nama`,`alamat`,`telp`,`tgl_lahir`,`tgl_register`,
-                                                `email`,`password`,`username`) VALUES ("'.$no_ktp.'","'.$nama.'","'.$alamat.'","'.$telp.'",
+        $save               = $this->db->query('INSERT INTO `customer` (`no_ktp`,`scan_ktp`,`nama`,`alamat`,`telp`,`tgl_lahir`,`tgl_register`,
+                                                `email`,`password`,`username`) VALUES ("'.$no_ktp.'","'.$file_ktp.'","'.$nama.'","'.$alamat.'","'.$telp.'",
                                                 "'.$tgl_lahir.'","'.$tgl_register.'","'.$email.'","'.$password.'","'.$username.'")');
 
-        if ($query === false){
+        if ($save === false){
             return "ERROR INSERTT";
         }else{
-            return $query; 
+            return $save; 
         }
 
     }
@@ -38,9 +40,14 @@ class Customer_model extends CI_Model
     }
 
     function act_edit(){
+        $no_ktp             = $this->input->post('no_ktp');
+        $type_ktp           = $this->input->post('type_ktp');
+        $file_ktp           = $no_ktp.'.'.$type_ktp;
+
         $sql = "UPDATE `customer` 
                     SET
                     `no_ktp` = '".$this->input->post('no_ktp')."',
+                    `scan_ktp` = '".$file_ktp."',
                     `nama` = '".$this->input->post('nama')."',
                     `alamat` = '".$this->input->post('alamat')."',
                     `telp` = '".$this->input->post('telp')."',

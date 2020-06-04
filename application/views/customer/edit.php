@@ -23,6 +23,17 @@
 	                            </div>
 	                        </div>
 	                        <div class="row">
+                        		<div class="form-group">
+	                                <label class="col-lg-3">Scan KTP</label>
+	                                <div class="col-lg-5">
+		                                <input class="form-control" type="file" id="file" name="file">
+	                                </div>
+	                                <div class="col-lg-3">
+	                                	<p class="help-block notif" id="notif_scan_ktp" style="color: red">* Scan KTP Tidak Boleh Kosong.</p>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="row">
 	                            <div class="form-group">
 	                                <label class="col-lg-3">Nama</label>
 	                                <div class="col-lg-5">
@@ -134,6 +145,20 @@
 </div>
 
 <script type="text/javascript">
+	function addfile(){
+		var fd = new FormData();
+        fd.append('file_quotation',file.file_quotation);
+
+        $.ajax({
+        	type: 'POST',
+            url: baseUrl+'customer/add_file/'+file.no_ktp,
+            data: fd,
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+	}
+
 	$('.notif').hide();
 
 	$('#simpan').click(function(){
@@ -202,11 +227,19 @@
 			return false;
 		}
 
+		var file_quotation    = $('#file')[0].files[0];
+        file = {
+            file_quotation  : file_quotation,
+            no_ktp          : $('#no_ktp').val()
+        };
+        addfile(file);
+
 		$.ajax({
 			url			: baseUrl+'customer/edit_act',
 			type 		: 'POST',
 			data 		: {
 				no_ktp 			: $('#no_ktp').val(),
+				type_ktp 		: $('#file')[0].files[0].type.split('/')[1],
 				no_ktp_old 		: $('#no_ktp_old').val(),
 				nama 			: $('#nama').val(),
 				alamat 			: $('#alamat').val(),
