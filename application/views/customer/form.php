@@ -258,9 +258,9 @@
 					alert('Data Gagal Di simpan');
 				}else{
 					alert('Data Berhasil Di Simpan');
-					// setTimeout(function () {
-			  //           window.location.href = baseUrl+'customer/'; 
-			  //       }, 2000);
+					setTimeout(function () {
+			            window.location.href = baseUrl+'customer/'; 
+			        }, 2000);
 				}
 			}
 		});
